@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 const hbs = require('express-hbs')
 const express = require('express')
 const mongoose = require('mongoose')
+const passport = require('passport')
+const localStrategy = require('passport-local').Strategy
 
 module.exports = (app) => {
   app.set('port', 3000)
@@ -38,5 +40,12 @@ module.exports = (app) => {
   }))
 
   mongoose.connect(app.get('mongo_url'))
+  app.use(passport.initialize())
+  app.use(passport.session())
+  passport.use(new localStrategy(require('./../../schemas/users').authenticate()))
+  passport.serializeUser(require('./../../schemas/users').serializeUser())
+  passport.deserializeUser(require('./../../schemas/users').deserializeUser())
+
+  require('./../helpers')(hbs)
 
 }

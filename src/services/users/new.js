@@ -5,6 +5,7 @@ module.exports = (req, res) => {
 
   return res.render('users/create', {
     title: 'Users - Xumeschat Admin',
+    user_logged: req.user,
     user: user
   })
 }

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
-    <div class="panel-heading">New user</div>
+    <div class="panel-heading">Edit user</div>
     <div class="panel-body">
-        <form action="/users" method="POST">
+        <form action="/users/{{ user._id }}?_method=PUT" method="POST">
             {{> users/_form }}
         </form>
     </div>

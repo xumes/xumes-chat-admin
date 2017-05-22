@@ -6,6 +6,7 @@ module.exports = (req, res) => {
     .then((users) => {
       return res.render('users/index', {
         title: 'Users - Xumeschat Admin',
+        user_logged: req.user,
         users: users
       });
     })
